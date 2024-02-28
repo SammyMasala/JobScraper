@@ -1,7 +1,7 @@
 import time
 
-from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -18,7 +18,9 @@ class IndeedScraper:
 
             searchRange = 0
             while searchRange < searchMax:
-                driver = webdriver.Chrome()
+                options = Options()
+                options.add_argument("--disable-extensions")
+                driver = webdriver.Chrome(options=options)
                 driver.implicitly_wait(3)
                 driver.get(urlFront + str(searchRange) + urlBack)
 
